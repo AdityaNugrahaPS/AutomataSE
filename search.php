@@ -144,15 +144,70 @@
                         <!-- Team Section -->
                         <div data-aos="fade-right" data-aos-duration="1000" class="mx-auto">
                             <h3 class="text-2xl font-bold mb-6 text-neon-blue text-center">Our Team</h3>
-                            <div class="grid grid-cols-2 gap-4 justify-center">
-                                <?php foreach ($creators as $index => $creator): ?>
-                                    <div class="creator-card bg-dark-background p-4 rounded-lg text-center" data-aos="fade-up"
-                                        data-aos-delay="<?php echo $index * 100; ?>">
-                                        <div class="mb-3">
-                                            <i data-lucide="user-circle" class="w-12 h-12 mx-auto text-neon-blue"></i>
+                            <!-- Letakkan kode ini di dalam file search.php, gantikan bagian tampilan hasil pencarian sebelumnya -->
+                            <div class="search-results-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
+                                <?php foreach ($results as $index => $row): ?>
+                                    <div class="result-card group relative bg-dark-surface rounded-2xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                                        <!-- Kontainer Media -->
+                                        <div class="media-container relative overflow-hidden">
+                                            <?php if (!empty($row['image_url'])): ?>
+                                                <img
+                                                    src='<?php echo htmlspecialchars($row['image_url']); ?>'
+                                                    alt='Image'
+                                                    class='w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110'
+                                                    data-aos="zoom-in"
+                                                    data-aos-delay="<?php echo $index * 100; ?>">
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($row['video_url'])): ?>
+                                                <div class="video-wrapper relative">
+                                                    <video
+                                                        controls
+                                                        class='w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110'
+                                                        data-aos="zoom-in"
+                                                        data-aos-delay="<?php echo $index * 100; ?>">
+                                                        <source src='<?php echo htmlspecialchars($row['video_url']); ?>' type='video/mp4'>
+                                                        Video tidak dapat diputar.
+                                                    </video>
+                                                    <div class="absolute top-4 right-4 bg-black/50 rounded-full p-2">
+                                                        <i data-lucide="video" class="text-white w-6 h-6"></i>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <!-- Overlay Informasi -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                                                <h2 class="text-white text-xl font-bold mb-2 truncate">
+                                                    <?php echo htmlspecialchars($row['title']); ?>
+                                                </h2>
+                                            </div>
                                         </div>
-                                        <h4 class="font-semibold text-lg"><?php echo htmlspecialchars($creator['name']); ?></h4>
-                                        <p class="text-gray-400"><?php echo htmlspecialchars($creator['role']); ?></p>
+
+                                        <!-- Konten Deskripsi -->
+                                        <div class="p-4">
+                                            <a href='detail.php?id=<?php echo htmlspecialchars($row['id']); ?>'
+                                                class='block text-neon-blue hover:text-neon-purple transition-colors duration-300'>
+                                                <h3 class="text-lg font-semibold mb-2 truncate">
+                                                    <?php echo htmlspecialchars($row['title']); ?>
+                                                </h3>
+                                            </a>
+                                            <p class='text-gray-300 text-sm leading-relaxed'>
+                                                <?php
+                                                $content = htmlspecialchars($row['content']);
+                                                echo strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
+                                                ?>
+                                            </p>
+                                        </div>
+
+                                        <!-- Quick Actions -->
+                                        <div class="quick-actions absolute top-4 left-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <button class="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/40 transition-colors">
+                                                <i data-lucide="heart" class="text-white w-5 h-5"></i>
+                                            </button>
+                                            <button class="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/40 transition-colors">
+                                                <i data-lucide="share-2" class="text-white w-5 h-5"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

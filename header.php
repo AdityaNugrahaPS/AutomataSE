@@ -7,13 +7,10 @@
 <script src="JS/gsap.min.js"></script> <!-- GSAP -->
 <script src="JS/lucide.js"></script> <!-- Lucide -->
 <script src="JS/particles.min.js"></script> <!-- Particles.js -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <!-- Typed.js Library (Local) -->
 <script src="JS/typed.min.js"></script>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <!-- CSS Libraries (Lokal) -->
 <link rel="stylesheet" href="CSS/bootstrap.min.css"> <!-- Bootstrap -->
