@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -32,9 +33,9 @@ body {
 }
 
 .search-input:focus {
-  border-color: #3b82f6; /* Border biru terang saat fokus */
+  border-color: white; /* Border putih saat fokus */
   color: white; /* Pastikan teks tetap berwarna putih */
-  box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.7); /* Efek cahaya biru di pinggir */
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7); /* Efek cahaya putih di pinggir */
   outline: none; /* Menghilangkan outline default */
 }
 
@@ -46,7 +47,7 @@ body {
 /* Button Icon */
 #search-button {
   background: linear-gradient(to right, #3b82f6, #8b5cf6);
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3); /* Cahaya putih */
   cursor: pointer;
   border-radius: 50%;
   padding: 10px;
@@ -68,7 +69,7 @@ body {
 
 .result-card:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Cahaya putih */
 }
 
 /* Suggestions List */
@@ -158,6 +159,36 @@ footer.visible {
 
 input:focus,
 button:focus {
-  border: 2px solid white; /* Atur border sesuai kebutuhan */
+  border: 2px solid white; /* Border putih */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Efek cahaya putih */
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-animation 5s ease infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
