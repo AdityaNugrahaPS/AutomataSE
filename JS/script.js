@@ -45,36 +45,45 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const filteredSuggestions = staticSuggestions.filter((suggestion) =>
-            suggestion.toLowerCase().includes(inputValue.toLowerCase())
-        ).slice(0, 5);
+        // Memecah input menjadi kata-kata
+        const words = inputValue.split(" ");
+        const lastWord = words[words.length - 1].toLowerCase(); // Ambil kata terakhir
+
+        // Filter saran berdasarkan kata pertama dari saran dan kata terakhir dari input
+        const filteredSuggestions = staticSuggestions.filter((suggestion) => {
+            const firstWord = suggestion.split(" ")[0].toLowerCase(); // Ambil kata pertama dari saran
+            return firstWord.startsWith(lastWord); // Cek apakah kata pertama dimulai dengan kata terakhir yang diketik
+        }).slice(0, 5); // Batasi hingga 5 saran
 
         if (filteredSuggestions.length > 0) {
             const suggestionList = document.createElement('ul');
             filteredSuggestions.forEach((suggestion, index) => {
                 const li = document.createElement("li");
                 li.textContent = suggestion;
+
                 li.addEventListener("click", function () {
-                    searchInput.value = suggestion;
-                    suggestionsBox.classList.add('hidden');
-                    selectedIndex = -1;
+                    searchInput.value = suggestion;  // Set input ke saran yang dipilih
+                    suggestionsBox.classList.add('hidden'); // Sembunyikan saran
+                    selectedIndex = -1; // Reset selectedIndex
                 });
+
                 suggestionList.appendChild(li);
             });
 
-            suggestionsBox.innerHTML = '';
+            suggestionsBox.innerHTML = '';  // Clear previous suggestionsBox content
             suggestionsBox.appendChild(suggestionList);
-            suggestionsBox.classList.remove('hidden');
+            suggestionsBox.classList.remove('hidden'); // Tampilkan saran
         } else {
-            suggestionsBox.classList.add('hidden');
+            suggestionsBox.classList.add('hidden'); // Sembunyikan saran jika tidak ada yang cocok
         }
     });
 
-    // Keyboard navigation
+    // Keyboard navigation (ArrowDown, ArrowUp, Enter)
     searchInput.addEventListener("keydown", function (event) {
         const items = suggestionsBox.querySelectorAll('li');
 
         if (event.key === "ArrowDown") {
+            // Pindah ke bawah dalam daftar
             if (selectedIndex < items.length - 1) {
                 if (selectedIndex >= 0) {
                     items[selectedIndex].classList.remove("hover");
@@ -84,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             event.preventDefault();
         } else if (event.key === "ArrowUp") {
+            // Pindah ke atas dalam daftar
             if (selectedIndex > 0) {
                 items[selectedIndex].classList.remove("hover");
                 selectedIndex--;
@@ -91,25 +101,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             event.preventDefault();
         } else if (event.key === "Enter") {
+            // Pilih item saat ini (jika ada)
             if (selectedIndex >= 0 && selectedIndex < items.length) {
                 searchInput.value = items[selectedIndex].textContent;
                 suggestionsBox.classList.add('hidden');
-                selectedIndex = -1;
+                selectedIndex = -1;  // Reset selectedIndex
             } else {
-                // Normal form submission
+                // Jika tidak ada saran yang dipilih, submit form
                 document.querySelector("form").submit();
             }
             event.preventDefault();
         }
     });
 
-    // Close suggestions when clicking outside
+    // Menutup saran ketika mengklik di luar input atau suggestions box
     document.addEventListener("click", function (event) {
         if (!searchInput.contains(event.target) && !suggestionsBox.contains(event.target)) {
             suggestionsBox.classList.add('hidden');
         }
     });
 });
+
+
 
 window.addEventListener('scroll', function () {
     const footer = document.querySelector('footer');
