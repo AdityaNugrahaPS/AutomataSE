@@ -18,8 +18,7 @@ $results = [];
 if (isset($_GET['query'])) {
   $search = $conn->real_escape_string($_GET['query']);
   $sql = "SELECT * FROM search_db WHERE 
-            title LIKE '%$search%' OR 
-            content LIKE '%$search%'";
+            title LIKE '%$search%'";
   $result = $conn->query($sql);
 
   if (!$result) {
