@@ -56,162 +56,162 @@ body {
 #search-button:hover {
   transform: scale(1.1);
   box-shadow: 0 5px 20px rgba(255, 255, 255, 0.5); /* Cahaya putih saat hover */
-}
 
-
-
-.search-container {
-  position: relative;
-  width: 100%;
-}
-
-.search-input {
-  background-color: #2c2c2c;
-  border: none;
-  color: white;
-  padding: 10px 12px;
-  border-radius: 9999px;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-.suggestions {
-  position: absolute;
-  top: 100%; /* Tepat di bawah input */
-  left: 0;
-  width: 100%;
-  margin-top: 4px;
-  background-color: #2c2c2c;
-  border: 1px solid #3c3c3c;
-  border-radius: 0.5rem;
-  z-index: 200;
-  overflow: hidden;
-}
-
-.suggestions ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  
-}
-
-.suggestions li {
-  padding: 10px;
-  color: white;
-  cursor: pointer;
-}
-
-.suggestions li.hover {
-  background-color: #3c3c3c; /* Warna latar belakang saat item disorot */
-  color: #ffffff; /* Warna teks saat item disorot */
-  outline: 2px solid #1e90ff; /* Garis biru di sekitar item untuk menandai fokus */
-}
-
-/* Result Card */
-.result-card {
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  background-color: rgba(30, 30, 30, 0.8);
-  padding: 15px;
-  border-radius: 0.75rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.result-card:hover {
-  z-index: 100;
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Cahaya putih */
-}
-
-
-/* Animation for Page Load */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  .search-container {
+    position: relative;
+    width: 100%;
+    z-index: 1000; /* Pastikan berada di lapisan paling atas */
   }
-  to {
+
+  .search-input {
+    background-color: #2c2c2c;
+    border: none;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 9999px;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  .suggestions {
+    position: absolute;
+    top: 100%; /* Tepat di bawah input */
+    left: 0;
+    width: 100%;
+    max-height: 300px; /* Batasi tinggi */
+    overflow-y: auto; /* Scrollable jika terlalu panjang */
+    margin-top: 10px; /* Tambahkan jarak dari input */
+    background-color: #2c2c2c;
+    border: 1px solid #3c3c3c;
+    border-radius: 0.5rem;
+    z-index: 1100; /* Sedikit lebih tinggi dari container */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  }
+
+  .suggestions ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .suggestions li {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .suggestions li:hover,
+  .suggestions li.hover {
+    background-color: #3c3c3c;
+    color: #ffffff;
+  }
+
+  /* Result Card */
+  .result-card {
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 15px;
+    border-radius: 0.75rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .result-card:hover {
+    z-index: 100;
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Cahaya putih */
+  }
+
+  /* Animation for Page Load */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  /* Footer Styles */
+  footer {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+  }
+
+  footer.visible {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Footer Styles */
-footer {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  z-index: 10;
-  text-align: center;
-  padding: 20px;
-}
-
-footer.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.copyright-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.875rem;
-}
-
-/* Enhancements */
-.gradient-hover {
-  transition: background-image 0.3s ease;
-}
-
-.gradient-hover:hover {
-  background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.search-form {
-  max-width: 500px;
-  margin: 20px auto;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-input:focus,
-button:focus {
-  border: 2px solid white; /* Border putih */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Efek cahaya putih */
-}
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
+  .copyright-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
-.animate-gradient {
-  background-size: 200% auto;
-  animation: gradient-animation 5s ease infinite;
-}
-
-.animate-pulse {
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
+  /* Enhancements */
+  .gradient-hover {
+    transition: background-image 0.3s ease;
   }
-  50% {
-    opacity: 0.8;
+
+  .gradient-hover:hover {
+    background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .search-form {
+    max-width: 500px;
+    margin: 20px auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  input:focus,
+  button:focus {
+    border: 2px solid white; /* Border putih */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Efek cahaya putih */
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient-animation 5s ease infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
   }
 }

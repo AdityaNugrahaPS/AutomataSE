@@ -75,8 +75,7 @@ include 'header.php';
             }
             ?>
 
-            <form action="search.php" method="GET" class="max-w-xl mx-auto w-full" data-aos="fade-up"
-                data-aos-duration="800">
+            <form action="search.php" method="GET" class="max-w-xl mx-auto w-full">
                 <div class="relative flex items-center">
                     <!-- Kotak input -->
                     <input type="text" name="query" autocomplete="off" value="<?php echo htmlspecialchars($search); ?>"
