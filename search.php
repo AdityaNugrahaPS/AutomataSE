@@ -126,7 +126,7 @@ include 'header.php';
                 <p class='text-base text-gray-300 leading-relaxed'>
                     <?php
                     $content = htmlspecialchars($row['content']);
-                    echo strlen($content) > 300 ? substr($content, 0, 300) . '...' : $content;
+                    echo $content;
                     ?>
                 </p>
             </div>
