@@ -133,10 +133,10 @@ include 'header.php';
                         <?php endif; ?>
 
                         <?php if (!empty($row['video_url'])): ?>
-                            <div class="video-placeholder w-full h-[500px] overflow-hidden relative group">
+                            <div class="video-placeholder w-full overflow-hidden relative group">
                                 <video
                                     controls
-                                    class="w-full h-full object-cover rounded-lg shadow-neon-sm transition-all duration-300 ease-in-out hover:scale-105"
+                                    class="w-full h-auto object-contain rounded-lg shadow-neon-sm transition-all duration-300 ease-in-out hover:scale-105"
                                     x-webkit-airplay="allow"
                                     playsinline
                                     data-aos="zoom-in"
