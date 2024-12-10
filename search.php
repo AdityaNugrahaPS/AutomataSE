@@ -75,20 +75,22 @@ include 'header.php';
             }
             ?>
 
-            <form action="search.php" method="GET" class="max-w-xl mx-auto w-full">
+            <form action="search.php" method="GET" class="max-w-xl mx-auto w-full relative">
                 <div class="relative flex items-center">
-                    <!-- Kotak input -->
-                    <input type="text" name="query" autocomplete="off" value="<?php echo htmlspecialchars($search); ?>"
+                    <input type="text" name="query" autocomplete="off"
+                        id="search-input"
+                        value="<?php echo htmlspecialchars($search); ?>"
                         placeholder="Cari sesuatu..." required
                         class="search-input w-full pl-4 pr-12 py-3 bg-[#2C2C2C] border border-dark-border text-white rounded-full focus:ring-2 focus:ring-neon-blue outline-none transition-transform duration-500 ease-in-out hover:scale-105 focus:scale-110">
-                    <div id="suggestions" class="suggestions hidden"></div>
 
-                    <!-- Tombol ikon -->
-                    <button type="submit" id="search-button"
-                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full transition-all duration-500 ease-in-out hover:scale-110">
+                    <button type="submit"
+                        id="search-button"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full transition-all duration-500 ease-in-out hover:scale-110 z-20">
                         <img src="icon/search.svg" alt="Search Icon" class="h-5 w-5" />
                     </button>
                 </div>
+
+                <div id="suggestions" class="suggestions hidden absolute w-full z-50 mt-2"></div>
             </form>
         </div>
 
