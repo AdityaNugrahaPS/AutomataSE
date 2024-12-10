@@ -111,6 +111,13 @@ include 'header.php';
                 </h2>
 
                 <div class="flex flex-col items-center justify-center my-4 space-y-6">
+                    <!-- Description Section -->
+                    <div class="text-container w-[80%]">
+                        <p class="text-base text-gray-300 leading-relaxed text-justify">
+                            <?php echo htmlspecialchars($row['content']); ?>
+                        </p>
+                    </div>
+
                     <!-- Media Container with Justify and Spacing -->
                     <div class="media-container w-[80%] flex flex-col items-center justify-center space-y-4">
                         <?php if (!empty($row['image_url'])): ?>
@@ -143,13 +150,6 @@ include 'header.php';
                                 </div>
                             </div>
                         <?php endif; ?>
-                    </div>
-
-                    <!-- Description Section -->
-                    <div class="text-container w-[80%]">
-                        <p class="text-base text-gray-300 leading-relaxed text-justify">
-                            <?php echo htmlspecialchars($row['content']); ?>
-                        </p>
                     </div>
                 </div>
             </div>
