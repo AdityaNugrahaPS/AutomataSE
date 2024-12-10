@@ -94,48 +94,80 @@ include 'header.php';
             </form>
         </div>
 
-        <!-- Display Search Results with Slide-In Animation -->
+        <!-- Make sure to include AOS CSS and JS in your HTML head -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
         <?php foreach ($results as $index => $row): ?>
-            <div class='result-card rounded-xl p-6 my-6 opacity-0 transform translate-y-10'
-                style='animation-delay: <?php echo $index * 0.1; ?>s' data-animate-card>
-                <h2 class='text-xl font-semibold mb-3'>
-                    <span class='text-neon-blue'>
+            <div
+                class="result-card rounded-xl p-6 my-6"
+                data-aos="fade-up"
+                data-aos-delay="<?php echo $index * 100; ?>"
+                data-aos-duration="1000">
+                <h2 class="text-xl font-semibold mb-3 text-center">
+                    <span class="text-neon-blue">
                         <?php echo htmlspecialchars($row['title']); ?>
                     </span>
                 </h2>
 
-
-                <!-- Media Display with Hover Effects -->
-                <div class='flex items-center space-x-4 my-4'>
-                    <?php if (!empty($row['image_url'])): ?>
-                        <img src='<?php echo htmlspecialchars($row['image_url']); ?>' alt='Image'
-                            class='max-w-[300px] h-auto rounded-lg shadow-neon-sm transition-transform duration-300 hover:scale-105'>
-                    <?php endif; ?>
-
-                    <?php if (!empty($row['video_url'])): ?>
-                        <div class='relative'>
-                            <video controls class='max-w-[500px] h-auto rounded-lg shadow-neon-sm'>
-                                <source src='<?php echo htmlspecialchars($row['video_url']); ?>' type='video/mp4'>
-                                Video tidak dapat diputar.
-                            </video>
-                            <div class='absolute top-2 right-2 bg-black/50 rounded-full p-2'>
-                                <i data-lucide="video" class="text-white w-6 h-6"></i>
+                <div class="flex flex-col items-center justify-center my-4 space-y-6">
+                    <!-- Media Container with Justify and Spacing -->
+                    <div class="media-container w-[80%] flex flex-col items-center justify-center space-y-4">
+                        <?php if (!empty($row['image_url'])): ?>
+                            <div class="image-placeholder w-full h-[500px] overflow-hidden relative group">
+                                <img
+                                    src="<?php echo htmlspecialchars($row['image_url']); ?>"
+                                    alt="Image"
+                                    class="w-full h-full object-cover rounded-lg shadow-neon-sm transition-all duration-300 ease-in-out hover:scale-105"
+                                    data-aos="zoom-in"
+                                    data-aos-delay="<?php echo $index * 100 + 200; ?>">
+                                <div class="absolute inset-0 border-4 border-transparent group-hover:border-white/50 rounded-lg transition-all duration-300 ease-in-out pointer-events-none"></div>
                             </div>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                        <?php endif; ?>
 
-                <p class='text-base text-gray-300 leading-relaxed'>
-                    <?php
-                    $content = htmlspecialchars($row['content']);
-                    echo $content;
-                    ?>
-                </p>
+                        <?php if (!empty($row['video_url'])): ?>
+                            <div class="video-placeholder w-full h-[500px] overflow-hidden relative group">
+                                <video
+                                    controls
+                                    class="w-full h-full object-cover rounded-lg shadow-neon-sm transition-all duration-300 ease-in-out hover:scale-105"
+                                    x-webkit-airplay="allow"
+                                    playsinline
+                                    data-aos="zoom-in"
+                                    data-aos-delay="<?php echo $index * 100 + 200; ?>">
+                                    <source src="<?php echo htmlspecialchars($row['video_url']); ?>" type="video/mp4">
+                                    Video tidak dapat diputar.
+                                </video>
+                                <div class="absolute inset-0 border-4 border-transparent group-hover:border-white/50 rounded-lg transition-all duration-300 ease-in-out pointer-events-none"></div>
+                                <div class="absolute top-2 right-2 bg-black/50 rounded-full p-2">
+                                    <i data-lucide="video" class="text-white w-6 h-6"></i>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Description Section -->
+                    <div class="text-container w-[80%]">
+                        <p class="text-base text-gray-300 leading-relaxed text-justify">
+                            <?php echo htmlspecialchars($row['content']); ?>
+                        </p>
+                    </div>
+                </div>
             </div>
         <?php endforeach; ?>
 
+        <script>
+            // Initialize AOS
+            document.addEventListener('DOMContentLoaded', () => {
+                AOS.init({
+                    duration: 1000,
+                    once: false,
+                    mirror: true
+                });
+            });
+        </script>
     </div>
 
+    <!-- Footer with Dynamic Content and Animations -->
     <!-- Footer with Dynamic Content and Animations -->
     <footer class="bg-dark-surface text-white py-12 mt-auto relative z-10 flex items-center justify-center">
         <div id="footer-particles-js" class="absolute inset-0 z-[-1]"></div>
@@ -171,30 +203,31 @@ include 'header.php';
                             <i data-lucide="phone" class="text-neon-blue w-6 h-6"></i>
                             <span>+62 812-3456-7890</span>
                         </div>
-                        <div class="flex space-x-4 mt-4 justify-center">
-                            <a href="#" class="social-icon hover:text-neon-blue transition-colors">
-                                <i data-lucide="linkedin" class="w-6 h-6"></i>
-                            </a>
-                            <a href="#" class="social-icon hover:text-neon-blue transition-colors">
-                                <i data-lucide="github" class="w-6 h-6"></i>
-                            </a>
-                            <a href="#" class="social-icon hover:text-neon-blue transition-colors">
-                                <i data-lucide="twitter" class="w-6 h-6"></i>
-                            </a>
-                            <a href="#" class="social-icon hover:text-neon-blue transition-colors">
-                                <i data-lucide="instagram" class="w-6 h-6"></i>
-                            </a>
+                        <div class="flex space-x-4 mt-4 justify-center items-center">
+                            <div class="social-icon-container mt-4">
+                                <a href="#" class="social-icon">
+                                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i data-lucide="github" class="w-6 h-6"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i data-lucide="twitter" class="w-6 h-6"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Copyright Section -->
-            <div class="text-center mt-12 pt-6 border-t border-dark-border text-gray-400" data-aos="fade-up"
-                data-aos-anchor-placement="bottom-bottom">
-                <p class="copyright-text">&copy; 2024 AutomataSE. All Rights Reserved.</p>
+                <!-- Copyright Section -->
+                <div class="text-center mt-12 pt-6 border-t border-dark-border text-gray-400" data-aos="fade-up"
+                    data-aos-anchor-placement="bottom-bottom">
+                    <p class="copyright-text">&copy; 2024 AutomataSE. All Rights Reserved.</p>
+                </div>
             </div>
-        </div>
     </footer>
 
     <script src="JS/script.js"></script>

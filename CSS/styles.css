@@ -263,3 +263,140 @@ button:focus {
   position: relative;
   z-index: 10;
 }
+
+/* Container for the search results */
+.result-card {
+  width: 80%; /* 80% of the web page's width */
+  margin: 0 auto;
+}
+
+/* Flexbox for vertical layout */
+.flex {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
+}
+
+/* Media container to limit width and apply hover effect */
+.media-container {
+  max-width: 80%;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Hover effect for media */
+.media-container img,
+.media-container video {
+  max-width: 100%;
+  height: auto;
+}
+
+.media-container img:hover,
+.media-container video:hover {
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
+}
+
+/* Text justification for description */
+.text-justify {
+  text-align: justify;
+}
+
+/* Adjustments for text container width */
+.text-container {
+  max-width: 80%;
+  width: 100%;
+}
+
+/* Slide-In Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate-card] {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Kontainer untuk hasil pencarian */
+.result-card {
+  width: 80%; /* 80% lebar halaman web */
+  margin: 0 auto;
+}
+
+/* Flexbox untuk tata letak vertikal */
+.flex {
+  display: flex;
+  flex-direction: column; /* Tumpuk elemen secara vertikal */
+  align-items: center; /* Pusatkan elemen secara horizontal */
+}
+
+/* Kontainer media untuk membatasi lebar dan menerapkan efek hover */
+.media-container {
+  max-width: 80%;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Efek hover untuk media */
+.media-container img,
+.media-container video {
+  max-width: 100%;
+  height: auto;
+}
+
+.media-container img:hover,
+.media-container video:hover {
+  transform: scale(1.05); /* Efek zoom kecil saat dihover */
+}
+
+/* Perataan teks untuk deskripsi */
+.text-justify {
+  text-align: justify;
+}
+
+/* Penyesuaian lebar kontainer teks */
+.text-container {
+  max-width: 80%;
+  width: 100%;
+}
+
+/* Animasi Slide-In */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate-card] {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.social-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Adds space between icons */
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #3b82f6; /* Neon blue color */
+}
